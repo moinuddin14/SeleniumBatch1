@@ -9,4 +9,9 @@ public class TestClass1 {
 		System.out.println("Hello World!!!");
 	}
 
+	
+	@Test
+	public void helloworld2(){
+		System.out.println("Hello World2!!!");
+	}
 }
