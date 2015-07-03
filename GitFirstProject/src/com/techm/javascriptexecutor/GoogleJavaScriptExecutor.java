@@ -31,34 +31,16 @@ public class GoogleJavaScriptExecutor {
 	  
 	  Thread.sleep(5000);
 	  
-	  @SuppressWarnings("unchecked")
-	  ArrayList<String> parentAttributes = (ArrayList<String>)((JavascriptExecutor)driver).executeScript("var s=[];var attr=arguments[0].attributes;for(i=0;i<attr.length;i++){var a = attr[i];s.push(a.name+'='+a.value);}return s;", element);
-	  System.out.println(parentAttributes);
-	  System.out.println("The number of elements persent in the array list are: "+parentAttributes.size());
-	  
-	  //Below was a mistake, when i tried to run the for each inside the try-catch block, but should have run other way.
-	 /* try{
-	  for(String str:parentAttributes){
-		  if(!str.toString().split("=")[1].isEmpty()){
-		  if(str.toString().split("=")[1].equalsIgnoreCase(null)){
-			  continue;
-		  }
-		  else{
-		  String s1 = str.toString();
-		  String[] s2 = s1.split("=");
-		  System.out.println("The name of the attribute is: "+s2[0]+" and the value is: "+s2[1]);
-		  //}
-	  }else{
-		  continue;
-	  }
-	  }
-	  }catch(Exception e){}*/
-	  
-	  passElementToGetAllAttributes(parentAttributes);
+	  passWebElementToGetAllAttributes(element, driver);
 	  
   }
   
-  public void passElementToGetAllAttributes(ArrayList<String> allAttributes){
+  public void passWebElementToGetAllAttributes(WebElement element, WebDriver driver){
+	  
+	  @SuppressWarnings("unchecked")
+	  ArrayList<String> allAttributes = (ArrayList<String>)((JavascriptExecutor)driver).executeScript("var s=[];var attr=arguments[0].attributes;for(i=0;i<attr.length;i++){var a = attr[i];s.push(a.name+'='+a.value);}return s;", element);
+	  System.out.println(allAttributes);
+	  System.out.println("The number of elements persent in the array list are: "+allAttributes.size());
 	  
 	  for(int j=0;j<allAttributes.size();j++){
 		  try{
@@ -72,6 +54,12 @@ public class GoogleJavaScriptExecutor {
 			  continue;
 		  }
 	  }
+  }
+  
+  public String passWebElementAttributeReturnAttribute(WebElement element, WebDriver driver, String attribute){
 	  
+	  
+	  
+	  return null;
   }
 }
