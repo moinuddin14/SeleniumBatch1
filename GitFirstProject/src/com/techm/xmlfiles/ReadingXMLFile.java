@@ -2,14 +2,12 @@ package com.techm.xmlfiles;
 
 import java.io.File;
 import java.io.IOException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -23,16 +21,23 @@ public class ReadingXMLFile {
 	  
 	  Document document = documentBuilder.parse(new File("C:\\Selenium\\gitproject\\GitFirstProject\\xmlDataFile.xml"));
 	  
-	  //System.out.println(document.getParentNode().getNodeName());
-	  Element element = document.getDocumentElement();
+	  //Normalizing the Dom
+	  document.getDocumentElement().normalize();
 	  
-	  NodeList nodeList = element.getElementsByTagName("Student");
+	  System.out.println("Root Element is: "+document.getDocumentElement().getNodeName());
 	  
-	  System.out.println("The node name is: "+nodeList.item(0).getNodeName());
+	  NodeList nList = document.getElementsByTagName("Student");
 	  
-	  for(int i=0;i<nodeList.getLength();i++){
+	  System.out.println("---------------------------");
+	  
+	  for(int i=0;i<nList.getLength();i++){
 		  
-		 // System.out.println(nodeList.item(i).getn);
+		  Node nNode = nList.item(i);
+		  System.out.println("\nCurrent Element: "+nNode.getNodeName());
+		  
+		  if(nNode.getNodeType()==Node.ELEMENT_NODE){
+			  
+		  }
 	  }
   }
    
