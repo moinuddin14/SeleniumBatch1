@@ -19,7 +19,7 @@ public class GoogleJavaScriptExecutor {
 	  driver.get("http://google.com");
 	  
 	  WebElement element = driver.findElement(By.id("lst-ib"));
-	  driver.findElement(By.id("lst-ib")).sendKeys("hello");
+	  //driver.findElement(By.id("lst-ib")).sendKeys("hello");
 	  
 	  Thread.sleep(5000);
 	  
@@ -29,34 +29,26 @@ public class GoogleJavaScriptExecutor {
 	
 	  try{
 	  for(String str:parentAttributes){
-		  
-		  if(str.equalsIgnoreCase("")){
-			  
+		  if(!str.toString().split("=")[1].isEmpty()){
+		  /*if(str.toString().split("=")[1].equalsIgnoreCase(null)){
+			  continue;
 		  }
-		  else{
+		  else{*/
 		  String s1 = str.toString();
 		  String[] s2 = s1.split("=");
 		  System.out.println("The name of the attribute is: "+s2[0]+" and the value is: "+s2[1]);
-		  }
+		  //}
+	  }else{
+		  continue;
 	  }
-	  }catch(Exception e){
-		  for(String str:parentAttributes){
-			  
-			  if(str.equalsIgnoreCase("")){
-				  
-			  }
-			  else{
-			  String s1 = str.toString();
-			  String[] s2 = s1.split("=");
-			  System.out.println("The name of the attribute is: "+s2[0]+" and the value is: "+s2[1]);
-			  }
-		  }
-		  }
+	  }
+	  }catch(Exception e){}
 		  
-	  }
 	  
+  
 	  
   }
+}
   
-  
+
 
